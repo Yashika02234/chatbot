@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Planner Bot</title>
+</head>
+<body>
+    <h1>Welcome to the Travel Planner Bot!</h1>
+    <form id="weatherForm">
+        <label for="city">Enter a city:</label>
+        <input type="text" id="city" name="city" placeholder="e.g., Paris" required>
+        <button type="submit">Get Weather</button>
+    </form>
+    <div id="weatherResult"></div>
+
+    <script>
+        document.getElementById("weatherForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const city = document.getElementById("city").value;
+            const response = await fetch(`/weather?city=${city}`);
+            const data = await response.json();
+            document.getElementById("weatherResult").innerText = JSON.stringify(data, null, 2);
+        });
+    </script>
+</body>
+</html>
